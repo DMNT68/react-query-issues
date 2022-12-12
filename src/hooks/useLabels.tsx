@@ -6,15 +6,16 @@ import { Label } from '../interfaces/label';
 const getLabels = async (): Promise<Label[]> => {
   await sleep(2);
 
-  const { data } = await gitubApi.get<Label[]>('/labels');
+  const { data } = await gitubApi.get<Label[]>('/labels', { headers: { Authorization: null } });
+  console.log(data);
   return data;
 };
 
 export const useLabels = () => {
   const labelQuery = useQuery(['labels'], getLabels, {
     staleTime: 1000 * 60 * 60,
-    // placeholderData:[],
-    initialData: [
+    // initialData:[],
+    placeholderData: [
       {
         id: 725156255,
         node_id: 'MDU6TGFiZWw3MjUxNTYyNTU=',
