@@ -6,7 +6,7 @@ import { Label } from '../interfaces/label';
 const getLabels = async (): Promise<Label[]> => {
   await sleep(2);
 
-  const { data } = await gitubApi.get<Label[]>('/labels', { headers: { Authorization: null } });
+  const { data } = await gitubApi.get<Label[]>('/labels?per_page=100', { headers: { Authorization: null } });
   console.log(data);
   return data;
 };
